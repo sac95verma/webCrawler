@@ -1,9 +1,8 @@
-import argparse
 import requests
 from bs4 import BeautifulSoup
 from utils import utils
 
-def crawl(initial_url, max_depth):
+def doCrawling(initial_url, max_depth):
     visited = set()
     images = []
     queue = [(initial_url, 0)]
@@ -22,18 +21,18 @@ def crawl(initial_url, max_depth):
         soup = BeautifulSoup(response.content, 'html.parser')
         for img in soup.find_all('img'):
             images.append({
-                'image': img['src'],
-                'source_page': url,
+                'imageUrl': img['src'],
+                'sourceUrl': url,
                 'depth': depth
             })
         for link in utils.get_all_links(url):
             queue.append((link, depth+1))
     return images
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('initial_url', help='the URL to start crawling')
-    parser.add_argument('depth', type=int, help='the depth to which to crawl')
-    args = parser.parse_args()
-    results = crawl(args.initial_url, args.depth)
-    print({'results': results})
+# if __name__ == '__main__':
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument('initial_url', help='the string URL to start crawling')
+#     parser.add_argument('depth', type=int, help='the depth to which to crawl (integer)')
+#     args = parser.parse_args()
+#     results = doCrawling(args.initial_url, args.depth)
+#     print({'results': results})
