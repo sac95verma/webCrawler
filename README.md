@@ -23,5 +23,3 @@ This web crawler has some limitations:
 - It does not handle JavaScript or dynamic content.
 - It may run into issues with very large websites or websites with complex navigation structures.
 
-## License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
