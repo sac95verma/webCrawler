@@ -1,3 +1,4 @@
+import argparse
 import requests
 from bs4 import BeautifulSoup
 from utils import utils
@@ -29,10 +30,10 @@ def doCrawling(initial_url, max_depth):
             queue.append((link, depth+1))
     return images
 
-# if __name__ == '__main__':
-#     parser = argparse.ArgumentParser()
-#     parser.add_argument('initial_url', help='the string URL to start crawling')
-#     parser.add_argument('depth', type=int, help='the depth to which to crawl (integer)')
-#     args = parser.parse_args()
-#     results = doCrawling(args.initial_url, args.depth)
-#     print({'results': results})
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('initial_url', help='the string URL to start crawling')
+    parser.add_argument('depth', type=int, help='the depth to which to crawl (integer)')
+    args = parser.parse_args()
+    results = doCrawling(args.initial_url, args.depth)
+    print({'results': results})
